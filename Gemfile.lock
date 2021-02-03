@@ -5,6 +5,7 @@ GEM
     method_source (1.0.0)
     nokogiri (1.11.1-arm64-darwin)
       racc (~> 1.4)
+    open-uri (0.1.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -15,6 +16,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  open-uri
   pry
 
 BUNDLED WITH
