@@ -7,7 +7,7 @@ require_relative './game.rb'
 class Scraper 
 
     def initialize
-        $game_data = {}
+        $game_data = Array.new(50) { Array.new(4) }
     end
 
     def get_page
@@ -20,36 +20,50 @@ class Scraper
     end
 
     def create_games
-        
+        counter = 0
         self.find_games.each do |game_card_medium|
-            game = Game.new
-            game.title = game_card_medium.css(".heading.heading_4").text
+            
+            #game[:title] = game_card_medium.css(".heading.heading_4").text
+            $game_data[counter][0] = game_card_medium.css(".heading.heading_4").text
+            #puts $game_data[counter][0]
+            #puts counter
+            #$game_data.merge!(title: game_card_medium.css(".heading.heading_4").text)
+            #puts game_card_medium.css(".heading.heading_4").text
             platform_array = game_card_medium.css("div .platforms")[0].children
             platform_string = platform_array.to_s
-            #binding.pry
+            # #binding.pry
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_pc")
-                $platforms << "PC"
+                $game_data[counter][1] = "PC"
+                #puts $game_data[counter][1]
             end
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_playstation")
-                $platforms << "Playstation"
+                $game_data[counter][2] = "Playstation"
+                #puts $game_data[counter][2]
             end
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_xbox")
-                $platforms << "Xbox"
+                $game_data[counter][3] = "Xbox"
+                #puts $game_data[counter][3]
             end
-            
+            counter += 1
         end
+        $game_data.compact!
     end
-    
+   
     def print_games
-        self.create_games
-        Game.all.each do |game|
-          if game.title && game.title != ""
-            puts "Title: #{game.title}"
-            puts "Platforms: #{$platforms.uniq}"
-          end
+        #   self.create_games
+         puts $game_data.length
+         $game_data.inspect
+         second_counter = 0
+         while second_counter < $game_data.length do
+            puts $game_data[second_counter][0]
+            puts $game_data[second_counter][1]
+            puts $game_data[second_counter][2]
+            puts $game_data[second_counter][3]
+            second_counter += 1
+            puts "test #{second_counter}"
         end
     end
 
 
 end
-Scraper.new.print_games
+#Scraper.new.create_games
