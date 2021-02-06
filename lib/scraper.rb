@@ -6,6 +6,10 @@ require_relative './game.rb'
 
 class Scraper 
 
+    def initialize
+        $game_data = {}
+    end
+
     def get_page
         Nokogiri::HTML(URI.open("https://rawg.io"))
 
@@ -16,7 +20,7 @@ class Scraper
     end
 
     def create_games
-        @platforms = []
+        
         self.find_games.each do |game_card_medium|
             game = Game.new
             game.title = game_card_medium.css(".heading.heading_4").text
@@ -24,13 +28,13 @@ class Scraper
             platform_string = platform_array.to_s
             #binding.pry
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_pc")
-                @platforms << "PC"
+                $platforms << "PC"
             end
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_playstation")
-                @platforms << "Playstation"
+                $platforms << "Playstation"
             end
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_xbox")
-                @platforms << "Xbox"
+                $platforms << "Xbox"
             end
             
         end
@@ -41,7 +45,7 @@ class Scraper
         Game.all.each do |game|
           if game.title && game.title != ""
             puts "Title: #{game.title}"
-            puts "Platforms: #{@platforms.uniq}"
+            puts "Platforms: #{$platforms.uniq}"
           end
         end
     end
