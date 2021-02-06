@@ -26,13 +26,8 @@ class Cli
         end
     end
 
-    # def get_info
-    #     if input == 
-    #         puts 
-    #     else
-    #         puts "I'm sorry I can't find that game :("
-    #     end
-
-    # end
+    def search_again_or_quit
+        
+    end
 
 end

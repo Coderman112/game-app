@@ -49,20 +49,20 @@ class Scraper
         $game_data.compact!
     end
    
-    def print_games
-        #   self.create_games
-         puts $game_data.length
-         $game_data.inspect
-         second_counter = 0
-         while second_counter < $game_data.length do
-            puts $game_data[second_counter][0]
-            puts $game_data[second_counter][1]
-            puts $game_data[second_counter][2]
-            puts $game_data[second_counter][3]
-            second_counter += 1
-            puts "test #{second_counter}"
-        end
-    end
+    # def print_games
+    #     #   self.create_games
+    #      puts $game_data.length
+    #      $game_data.inspect
+    #      second_counter = 0
+    #      while second_counter < $game_data.length do
+    #         puts $game_data[second_counter][0]
+    #         puts $game_data[second_counter][1]
+    #         puts $game_data[second_counter][2]
+    #         puts $game_data[second_counter][3]
+    #         second_counter += 1
+    #         puts "test #{second_counter}"
+    #     end
+    # end
 
 
 end
