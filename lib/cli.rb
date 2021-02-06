@@ -24,10 +24,19 @@ class Cli
         if found_it == 0
             puts "Sorry I couldn't find it"
         end
+        self.search_again_or_quit
     end
 
     def search_again_or_quit
-        
+        puts "Would you like to search for another game? Please input Y for yes or N for no"
+        input = gets.strip
+        if input == "Y"
+            self.ask_for_name
+        end
+        if input == "N"
+            exit 
+        end
+
     end
 
 end
