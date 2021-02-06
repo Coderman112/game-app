@@ -1,7 +1,7 @@
 class Cli 
 
     def greeting
-        puts "What's up gamer?"
+        puts "What's up gamer? Welcome to Platform Finder"
         self.ask_for_name
     end
 
@@ -34,6 +34,7 @@ class Cli
             self.ask_for_name
         end
         if input == "N"
+            puts "Thank you for using Platform Finder"
             exit 
         end
 

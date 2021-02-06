@@ -22,27 +22,24 @@ class Scraper
     def create_games
         counter = 0
         self.find_games.each do |game_card_medium|
-            
-            #game[:title] = game_card_medium.css(".heading.heading_4").text
+            game = Game.new
             $game_data[counter][0] = game_card_medium.css(".heading.heading_4").text
-            #puts $game_data[counter][0]
-            #puts counter
-            #$game_data.merge!(title: game_card_medium.css(".heading.heading_4").text)
-            #puts game_card_medium.css(".heading.heading_4").text
+            game.title = $game_data[counter][0]
+            game.platforms = []
             platform_array = game_card_medium.css("div .platforms")[0].children
             platform_string = platform_array.to_s
             # #binding.pry
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_pc")
                 $game_data[counter][1] = "PC"
-                #puts $game_data[counter][1]
+                game.platforms << $game_data[counter][1]
             end
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_playstation")
                 $game_data[counter][2] = "Playstation"
-                #puts $game_data[counter][2]
+                game.platforms << $game_data[counter][2]
             end
             if platform_string.include?("platforms__platform platforms__platform_medium platforms__platform_xbox")
                 $game_data[counter][3] = "Xbox"
-                #puts $game_data[counter][3]
+                game.platforms << $game_data[counter][3]
             end
             counter += 1
         end
