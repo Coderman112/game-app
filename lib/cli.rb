@@ -6,16 +6,24 @@ class Cli
     end
 
     def ask_for_name
-        puts "Go ahead and put in a game title"
+        puts "Go ahead and put in a game title and I'll find its platforms for you"
         input = gets.strip
-        Scraper.new.create_games
+        Game.construct_games
         # puts $game_data.length
         #  $game_data.inspect
          second_counter = 0
          found_it = 0
         while second_counter < $game_data.length do
             if $game_data[second_counter][0] == input
-                puts "It's on #{$game_data[second_counter][1]} and #{$game_data[second_counter][2]} and #{$game_data[second_counter][3]}"
+                if $game_data[second_counter][1] != nil
+                puts "It's on #{$game_data[second_counter][1]}"
+                end
+                if $game_data[second_counter][2] != nil 
+                puts "It's on #{$game_data[second_counter][2]}"
+                end
+                if $game_data[second_counter][3] != nil
+                puts "It's on #{$game_data[second_counter][3]}"
+                end
                 found_it += 1
             end
              second_counter += 1
